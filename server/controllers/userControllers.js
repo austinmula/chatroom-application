@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 exports.createUser = async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    const found = User.findOne({ email });
+    const found = await User.findOne({ email });
 
     if (found) return sendError(res, 'This email already exists', 400);
 
@@ -25,10 +25,10 @@ exports.login = async (req, res) => {
     return sendError(res, 'Email or Password is missing', 400);
   }
 
-  const found = User.findOne({ email });
-  if (!found) return sendError(res, 'User Does NOT Exist', 400);
+  const user = await User.findOne({ email });
+  if (!user) return sendError(res, 'User Does NOT Exist', 400);
 
-  const isMatch = user.comparePassword(password);
+  const isMatch = await user.comparePasswords(password);
   if (!isMatch) return sendError(res, 'Invalid Username or Password', 400);
 
   const token = jwt.sign({ user_id: user._id }, process.env.JWT_SECRET, {

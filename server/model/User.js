@@ -1,28 +1,33 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    avatar: {
+      type: String,
+      default: '',
+    },
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  avatar: {
-    type: String,
-    default: '',
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 // Function that runs right before saving to db
-userSchema.pre('save', async (next) => {
+userSchema.pre('save', async function (next) {
   // if statement ensures that the hashing runs only when password is modified
   if (this.isModified('password')) {
     const hash = await bcrypt.hash(this.password, 8);
