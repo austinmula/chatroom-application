@@ -1,8 +1,12 @@
 import React from 'react';
 
-const NavBar = () => {
+const NavBar = ({ setIsOpen }) => {
   return (
-    <nav className='navbar ' role='navigation' aria-label='main navigation'>
+    <nav
+      className='navbar is-dark'
+      role='navigation'
+      aria-label='main navigation'
+    >
       <div className='navbar-brand'>
         <div className='navbar-item'>
           <span className='icon'>
@@ -20,7 +24,7 @@ const NavBar = () => {
             </svg>
           </span>
 
-          <h1 className='subtitle is-5 ml-2 has-text-primary-dark'>
+          <h1 className='subtitle is-5 ml-2 has-text-primary-light'>
             Lets Chat
           </h1>
         </div>
@@ -42,9 +46,9 @@ const NavBar = () => {
         <div className='navbar-end'>
           <div className='navbar-item'>
             <div className='buttons'>
-              <a className='button ' href='/sign-in'>
+              <button className='button' onClick={() => setIsOpen(true)}>
                 Log in
-              </a>
+              </button>
             </div>
           </div>
         </div>

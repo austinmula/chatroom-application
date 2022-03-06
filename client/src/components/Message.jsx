@@ -6,7 +6,7 @@ const Message = () => {
   return (
     <>
       {data.map(() => (
-        <article className='media' style={{ width: '400px' }}>
+        <article className='media' style={{ width: '30vw' }}>
           <div className='media-content'>
             <div className='notification is-primary'>
               <p>

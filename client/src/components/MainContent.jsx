@@ -6,30 +6,30 @@ const data = [
   'Chatroom two',
   'Chatroom three',
   'Chatroom four',
-  'Chatroom five',
-  'Chatroom Six',
-  'Chatroom Seven',
+  // 'Chatroom five',
+  // 'Chatroom Six',
+  // 'Chatroom Seven',
 ];
 
 const MainContent = () => {
   return (
-    <section className='is-success '>
+    <section className='section mt-3 has-background-grey-lighter'>
       <div className='columns'>
         <div
-          className='column is-3'
-          style={{ height: '90vh', overflow: 'auto' }}
+          className='column is-3 has-background-grey'
+          style={{ height: '72vh', overflow: 'auto' }}
         >
-          <div className='box has-text-centered mt-3 has-background-primary'>
-            <p className='title is-6 has-text-white-ter'>
-              Available Chat Rooms
-            </p>
+          <div className='has-text-centered py-4 has-background-primary'>
+            <p className='title is-6 has-text-white-ter'>My Chat Rooms</p>
           </div>
           <div className='dropdown-divider'></div>
 
           {data.map((i) => (
             <>
-              <p className='title is-6 has-text-primary-dark'>{i}</p>
-              <p className='subtitle is-6'>Chatroom Description.</p>
+              <p className='title is-6 has-text-primary-light'>{i}</p>
+              <p className='subtitle is-6 has-text-primary-light'>
+                Chatroom Description.
+              </p>
               <div className='dropdown-divider'></div>
             </>
           ))}
@@ -37,8 +37,8 @@ const MainContent = () => {
 
         <div className='column is-9 is-fullheight'>
           <div
-            className='box mt-3 has-background-grey-lighter'
-            style={{ height: '70vh', overflow: 'auto' }}
+            className='box has-background-white-ter'
+            style={{ height: '59vh', overflow: 'auto' }}
           >
             <Message />
           </div>
@@ -51,7 +51,7 @@ const MainContent = () => {
                     <textarea
                       className='textarea is-success'
                       placeholder='Type Message Here...'
-                      rows={2}
+                      rows={1}
                     ></textarea>
                   </p>
                 </div>
