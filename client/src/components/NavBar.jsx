@@ -1,6 +1,14 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout, reset } from '../features/auth/authSlice';
 
 const NavBar = ({ setIsOpen }) => {
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const handleLogOut = () => {
+    dispatch(logout());
+    dispatch(reset());
+  };
   return (
     <nav
       className='navbar is-dark'
@@ -46,9 +54,20 @@ const NavBar = ({ setIsOpen }) => {
         <div className='navbar-end'>
           <div className='navbar-item'>
             <div className='buttons'>
-              <button className='button' onClick={() => setIsOpen(true)}>
-                Log in
-              </button>
+              {!user ? (
+                <button className='button' onClick={() => setIsOpen(true)}>
+                  Log in
+                </button>
+              ) : (
+                <>
+                  <button className='button is-primary' onClick={handleLogOut}>
+                    Log Out
+                  </button>
+                  <button className='button' onClick={() => setIsOpen(true)}>
+                    {user && user.name}
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

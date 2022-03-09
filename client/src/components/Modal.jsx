@@ -7,8 +7,9 @@ const Modal = ({ isOpen, setIsOpen }) => {
       <div className='modal-background'></div>
       <div className='modal-content'>
         {/* <!-- Any other Bulma elements you want --> */}
-        <LoginForm />
+        <LoginForm setIsOpen={setIsOpen} />
       </div>
+
       <button
         className='modal-close is-large'
         aria-label='close'
