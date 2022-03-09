@@ -2,8 +2,8 @@ const Message = require('../model/Message');
 
 exports.createMessage = async (req, res) => {
   try {
-    const { sentBy, chatroomId, content } = req.body;
-    const newMessage = new Message({ sentBy, chatroomId, content });
+    const { sentBy, chatroomId, content, username } = req.body;
+    const newMessage = new Message({ sentBy, chatroomId, content, username });
 
     const savedMessage = await newMessage.save();
     res.status(200).json(savedMessage);

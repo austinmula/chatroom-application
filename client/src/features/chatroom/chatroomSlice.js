@@ -10,12 +10,12 @@ const initialState = {
 };
 
 // Fetch chatrooms
-export const fetchRooms = createAsyncThunk(
+export const fetchrooms = createAsyncThunk(
   'users/chatrooms',
   async (_, thunkAPI) => {
     try {
-      const token = thunkAPI.getState.auth.user.token;
-      return await chatroomService.getRooms(token);
+      const token = thunkAPI.getState().auth.user.token;
+      return await chatroomService.fetchrooms(token);
     } catch (error) {
       const message =
         (error.response &&
@@ -30,30 +30,26 @@ export const fetchRooms = createAsyncThunk(
 );
 
 export const chatroomSlice = createSlice({
-  name: 'chatrooms', // this is the name of our slice
+  name: 'chatroom', // this is the name of our slice
   initialState,
   reducers: {
     reset: (state) => initialState,
   },
-  //   extraReducers: {
-  //     [login.pending]: (state) => {
-  //       state.isLoading = true;
-  //     },
-  //     [login.fulfilled]: (state, action) => {
-  //       state.isLoading = false;
-  //       state.isSuccess = true;
-  //       state.user = action.payload;
-  //     },
-  //     [login.rejected]: (state, action) => {
-  //       state.isLoading = false;
-  //       state.isError = true;
-  //       state.message = action.payload;
-  //       state.user = null;
-  //     },
-  //     [logout.fulfilled]: (state) => {
-  //       state.user = null;
-  //     },
-  //   },
+  extraReducers: {
+    [fetchrooms.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchrooms.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.chatrooms = action.payload;
+    },
+    [fetchrooms.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.message = action.payload;
+    },
+  },
 });
 
 export const { reset } = chatroomSlice.actions;
