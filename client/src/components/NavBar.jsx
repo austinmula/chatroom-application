@@ -1,9 +1,8 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
 
-const NavBar = ({ setIsOpen }) => {
-  const { user } = useSelector((state) => state.auth);
+const NavBar = ({ setIsOpen, user }) => {
   const dispatch = useDispatch();
   const handleLogOut = () => {
     dispatch(logout());
@@ -54,7 +53,7 @@ const NavBar = ({ setIsOpen }) => {
         <div className='navbar-end'>
           <div className='navbar-item'>
             <div className='buttons'>
-              {!user ? (
+              {/* {!user ? (
                 <button className='button' onClick={() => setIsOpen(true)}>
                   Log in
                 </button>
@@ -63,11 +62,11 @@ const NavBar = ({ setIsOpen }) => {
                   <button className='button is-primary' onClick={handleLogOut}>
                     Log Out
                   </button>
-                  <button className='button' onClick={() => setIsOpen(true)}>
-                    {user && user.name}
+                  <button className='button'>
+                    {user ? user.name : 'username'}
                   </button>
                 </>
-              )}
+              )} */}
             </div>
           </div>
         </div>

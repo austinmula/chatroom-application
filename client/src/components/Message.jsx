@@ -1,12 +1,12 @@
 import React from 'react';
 import * as timeago from 'timeago.js';
 
-const Message = ({ msg }) => {
+const Message = ({ msg, own }) => {
   return (
-    <>
-      <article className='media' style={{ width: '30vw' }}>
+    <div className={`is-flex ${own ? 'is-justify-content-end' : null}`}>
+      <article className='media mb-4' style={{ width: '380px' }}>
         <div className='media-content'>
-          <div className='notification is-primary'>
+          <div className={`notification  ${own ? 'is-dark' : 'is-success'}`}>
             <p>
               <strong>@{msg.username}</strong>{' '}
               <small className='ml-3'>{timeago.format(msg.createdAt)}</small>
@@ -25,7 +25,7 @@ const Message = ({ msg }) => {
           </p>
         </figure>
       </article>
-    </>
+    </div>
   );
 };
 

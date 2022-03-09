@@ -9,7 +9,7 @@ const initialState = {
   isLoading: false,
   isSuccess: false,
   isError: false,
-
+  isAuthenticated: false,
   message: '',
 };
 
@@ -50,16 +50,19 @@ export const authSlice = createSlice({
     [login.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
+      state.isAuthenticated = true;
       state.user = action.payload;
     },
     [login.rejected]: (state, action) => {
       state.isLoading = false;
       state.isError = true;
       state.message = action.payload;
+      state.isAuthenticated = false;
       state.user = null;
     },
     [logout.fulfilled]: (state) => {
       state.user = null;
+      state.isAuthenticated = false;
     },
   },
 });

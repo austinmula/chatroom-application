@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { login, reset } from '../features/auth/authSlice';
 
-const LoginForm = ({ setIsOpen }) => {
+const LoginForm = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const { user, isLoading, isError, isSuccess, message } = useSelector(
@@ -40,12 +42,11 @@ const LoginForm = ({ setIsOpen }) => {
     }
 
     if (isSuccess || user) {
-      // navigate('/dashboard');
-      setIsOpen(false);
+      navigate('/messenger');
     }
 
     dispatch(reset());
-  }, [user, isError, isSuccess, message, dispatch, setIsOpen, setErrorMessage]);
+  }, [user, isError, isSuccess, message, dispatch, setErrorMessage, navigate]);
 
   return (
     <form className='box' onSubmit={handleSubmit}>

@@ -30,8 +30,8 @@ const SideContent = ({ handleClick }) => {
   return (
     <>
       <div
-        className='column is-3 has-background-grey'
-        style={{ height: '72vh', overflow: 'auto' }}
+        className='column is-2 has-background-grey'
+        style={{ height: '100vh', overflow: 'auto' }}
       >
         <div className='has-text-centered py-4 has-background-primary'>
           <p className='title is-6 has-text-white-ter'>My Chat Rooms</p>

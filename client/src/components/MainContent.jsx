@@ -4,7 +4,7 @@ import { fetchmessages } from '../features/messages/messageSlice';
 import MessageTab from './MessageTab';
 import SideContent from './SideContent';
 
-const MainContent = () => {
+const MainContent = ({ user }) => {
   const dispatch = useDispatch();
   const [showTab, setShowTab] = useState(false);
   const [convoId, setConvoId] = useState('');
@@ -17,12 +17,19 @@ const MainContent = () => {
   };
 
   return (
-    <section className='section mt-3 has-background-grey-lighter'>
-      <div className='columns'>
+    <section
+      className='has-background-grey-light'
+      style={{ maxHeight: '100vh' }}
+    >
+      <div className='columns is-gapless'>
         <SideContent handleClick={handleClick} />
-        <div className='column is-9 is-fullheight'>
-          {showTab && <MessageTab convoId={convoId} />}
+        <div
+          className='column is-7 has-background-white-ter'
+          style={{ height: '100vh' }}
+        >
+          {showTab && <MessageTab convoId={convoId} user={user} />}
         </div>
+        <div className='column is-3 has-background-grey-light'></div>
       </div>
       {/* </div> */}
     </section>
