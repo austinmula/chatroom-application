@@ -2,20 +2,34 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { sendmessage } from '../features/messages/messageSlice';
 
-const SendMsgForm = ({ convoId }) => {
+const SendMsgForm = ({ convoId, user, sendToSocket }) => {
   const dispatch = useDispatch();
   const [content, setContent] = useState('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
-      content: content,
-      chatroomId: convoId,
-    };
-    //const upd = { ...content, chatroomId: convoId };
-    console.log(data);
+    if (content !== '') {
+      const data = {
+        content: content,
+        chatroomId: convoId,
+      };
 
-    dispatch(sendmessage(data));
-    setContent('');
+      //  Send Message to socket server
+      const messageData = {
+        content: content,
+        chatroomId: convoId,
+        sentBy: user.user_id,
+        username: user.name,
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
+      };
+
+      sendToSocket(messageData);
+
+      // now send to server
+      dispatch(sendmessage(data));
+      setContent('');
+    }
   };
 
   return (
