@@ -56,6 +56,9 @@ export const messageSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => initialState,
+    appendMessage: (state, action) => {
+      state.messages = [...state.messages, action.payload];
+    },
   },
   extraReducers: {
     [fetchmessages.pending]: (state) => {
@@ -87,5 +90,5 @@ export const messageSlice = createSlice({
   },
 });
 
-export const { reset } = messageSlice.actions;
+export const { reset, appendMessage } = messageSlice.actions;
 export default messageSlice.reducer;
