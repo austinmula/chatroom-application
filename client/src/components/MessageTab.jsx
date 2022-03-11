@@ -14,14 +14,10 @@ const MessageTab = ({ convoId, user }) => {
     <>
       <div>
         {messages.length > 0 ? (
-          <div className='p-4' style={{ height: '83vh', overflowY: 'auto' }}>
+          <div className='p-4' style={{ maxHeight: '83vh', overflowY: 'auto' }}>
             {messages.map((msg) => (
-              <div ref={scrollRef}>
-                <Message
-                  key={msg._id}
-                  msg={msg}
-                  own={msg.sentBy === user.user_id}
-                />
+              <div ref={scrollRef} key={msg._id}>
+                <Message msg={msg} own={msg.sentBy === user.user_id} />
               </div>
             ))}
           </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import * as timeago from 'timeago.js';
+import moment from 'moment';
 
 const Message = ({ msg, own }) => {
   return (
@@ -9,7 +9,7 @@ const Message = ({ msg, own }) => {
           <div className={`notification  ${own ? 'is-dark' : 'is-success'}`}>
             <p>
               <strong>@{msg.username}</strong>{' '}
-              <small className='ml-3'>{timeago.format(msg.createdAt)}</small>
+              <small className='ml-3'>{moment(msg.createdAt).fromNow()}</small>
               <br />
               {msg.content}
             </p>
